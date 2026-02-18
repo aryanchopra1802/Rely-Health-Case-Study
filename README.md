@@ -60,31 +60,31 @@ I've used Dash in a previous internship and it was the natural pick here. A few 
 - **Plotly out of the box.** Dash renders Plotly charts natively, so there's no glue code needed between the charting library and the UI framework.
 - **Interactivity without JavaScript.** Dropdowns, sliders, multi-selects, and reactive callbacks are first-class citizens. Building the same filter bar in Flask + vanilla JS would have taken considerably longer.
 - **Lightweight footprint.** There's no build step, no bundler, no separate frontend server. `python app.py` is all you need.
-- **DataTable component.** `dash_table.DataTable` gives you server-side sorting, filtering, and pagination for free — exactly what the spec asked for.
+- **DataTable component.** `dash_table.DataTable` gives you server-side sorting, filtering, and pagination for free - exactly what the spec asked for.
 
 ---
 
 ## Dashboard visualizations
 
-### 1. Launches per Year — Area line chart
+### 1. Launches per Year - Area line chart
 
-A line chart with an area fill showing mission volume year over year. A line was the right choice here because the primary question is "how has launch frequency changed over time?" — trend and direction matter more than individual point comparisons. The area fill adds a sense of magnitude without cluttering the chart. A bar chart would have worked too, but becomes cramped for 60+ years of annual data.
+A line chart with an area fill showing mission volume year over year. A line was the right choice here because the primary question is "how has launch frequency changed over time?" - trend and direction matter more than individual point comparisons. The area fill adds a sense of magnitude without cluttering the chart. A bar chart would have worked too, but becomes cramped for 60+ years of annual data.
 
-### 2. Mission Status Distribution — Donut chart
+### 2. Mission Status Distribution - Donut chart
 
 A donut breaks down the four outcome categories (Success, Failure, Partial Failure, Prelaunch Failure) as proportions of the whole. The hole in the centre is used to show the total mission count in context. A pie chart would carry the same information, but a donut is cleaner at small sizes because the centre gives you somewhere to anchor a summary number. Each slice is colour-coded semantically: green for success, red for failure, amber for partial, purple for prelaunch.
 
-### 3. Top 15 Companies by Mission Count — Horizontal bar chart
+### 3. Top 15 Companies by Mission Count - Horizontal bar chart
 
 Horizontal bars are the standard choice when you have long category labels (company names) and want to rank them. Vertical bars would truncate or rotate the labels. The gradient fill (muted blue → bright blue) gives a secondary visual cue on top of bar length, making the rank ordering read faster.
 
-### 4. Success Rate by Top 15 Companies — Horizontal bar chart with diverging colour scale
+### 4. Success Rate by Top 15 Companies - Horizontal bar chart with diverging colour scale
 
 Same orientation rationale as above, but the colour scale here does more work: it runs from red (low success rate) through amber to green (high), mirroring traffic-light intuition. This lets you scan across companies and spot outliers immediately, without reading exact values. The x-axis is fixed at 0–100 so bars are always comparable even when the filter changes the visible companies.
 
-### 5. Launch Activity Heatmap — Year × Decade grid
+### 5. Launch Activity Heatmap - Year × Decade grid
 
-The heatmap answers "which decade, and which year within that decade, saw the most launches?" A grid encodes two categorical dimensions (decade, year-within-decade) against a continuous one (count), which is exactly what heatmaps are built for. It also surfaces gaps and clusters — the cold-war surge, the post-Soviet dip, the recent commercial boom — at a glance, in a way that a grouped bar chart would struggle to show cleanly. The colour scale runs from a dark navy (zero/low) to the dashboard's accent blue (peak) so empty cells are visually distinct from the background.
+The heatmap answers "which decade, and which year within that decade, saw the most launches?" A grid encodes two categorical dimensions (decade, year-within-decade) against a continuous one (count), which is exactly what heatmaps are built for. It also surfaces gaps and clusters - the cold-war surge, the post-Soviet dip, the recent commercial boom - at a glance, in a way that a grouped bar chart would struggle to show cleanly. The colour scale runs from a dark navy (zero/low) to the dashboard's accent blue (peak) so empty cells are visually distinct from the background.
 
 ---
 
