@@ -1,0 +1,9 @@
+.rc-slider input,
+.rc-slider-handle input,
+.rc-slider input[type="number"],
+.rangeslider input,
+.dash-slider-container input {
+    color: red !important;
+    background-color: #161b22 !important;
+    border-color: #30363d !important;
+}
